@@ -1,22 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import { Upload } from 'antd';
 
 function App() {
+  const props = {
+    beforeUpload: (file) => {
+      console.log('beforeUpload file = ', file)
+    },
+    customRequest: options => {
+      console.log('customRequest options = ', options)
+    },
+    multiple: true,
+    showUploadList: false,
+    accept: 'image/*',
+    capture: 'user'
+  };
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Upload {...props}>
+          <p>
+            打开相机
+          </p>
+        </Upload>
       </header>
     </div>
   );
